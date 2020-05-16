@@ -24,12 +24,17 @@ def check_root_full():
 checks=[(check_reboot,"Check if any reboot pending"),(check_root_full,"Check partition is full or not")]
 
 def main():
+
+    everything_fine=True
     for check,state in checks:
         if check():
            print(state)
-           sys.exit(1)
+           everything_fine =False
+    if not everything_fine:
+       sys.exit(1)
 
     print("Everything Ok")
     sys.exit(0)
 
 main()
+ 
